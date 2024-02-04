@@ -14,8 +14,8 @@ public class ChessPosition {
 
 	//Construtores==================================
 	public ChessPosition(char column, int row) {
-		if(column < 'A' || column > 'H' || column < 1 || row > 8) {
-			throw new ChessException("Error instatiating ChessPosition. Valid values are from A1 to H8");
+		if(column < 'a' || column > 'h' || column < 1 || row > 8) {
+			throw new ChessException("Error instatiating ChessPosition. Valid values are from a1 to h8");
 
 		}
 		this.column = column;
@@ -38,11 +38,11 @@ public class ChessPosition {
 	
 	//Método=====================================
 	protected Position toPosition() {
-		return new Position(8 - row, column - 'A');
+		return new Position(8 - row, column - 'a');
 	}
 	
 	protected static ChessPosition fromPosition(Position position) {
-		return new ChessPosition((char)('A' - position.getColumn()), 8 - position.getRow());
+		return new ChessPosition((char)('a' - position.getColumn()), 8 - position.getRow());
 	}
 
 	
