@@ -1,14 +1,14 @@
 package boardgame;
 
-public class Piece{
+public abstract class Piece{
 	
 	
-	//ATRIBUTO
+	//ATRIBUTO==========================
 	protected Position position;
 	private Board board;
 	
 	
-	// CONSTRUTORES
+	// CONSTRUTORES============================
 	public Piece(Board board) {
 		super();
 		this.board = board;
@@ -17,7 +17,7 @@ public class Piece{
 	
 
 	
-	//GET and SET
+	//GET and SET=================================
 	protected Board getBoard() {// somente classes dentro do mesmo pacote(BoardGame) e subclasses terão acesso
 		return board;
 	}
@@ -26,13 +26,25 @@ public class Piece{
 
 
 	
+	//Métodos======================================
+	public abstract boolean [][] possibleMoves();  //criada matrix booleana para movimentação das peças
+	
+	public boolean possibleMove(Position position) {		//esse método está utilizando o método abstrato acima
+		return possibleMoves()[position.getRow()] [position.getColumn()];
+	}
 	
 	
-	
-	
-	
-	
-	
+	public boolean isThereAnyPossibleMove() {
+		boolean [][] mat = possibleMoves();
+		for(int i = 0; i < mat.length; i++) {
+			for(int j = 0; j < mat.length; j++) {
+				if (mat [i][j]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 	
 

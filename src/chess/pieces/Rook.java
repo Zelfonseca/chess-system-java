@@ -8,21 +8,25 @@ import chess.Color;
 
 public class Rook extends ChessPiece{
 
+	//Construtor=======================
 	public Rook(Board board, Color color) {
 		super(board, color);
-		// TODO Auto-generated constructor stub
+	}
+	
+
+	//Métodos======================= chamado o método da classe PIECE
+	@Override
+	public boolean[][] possibleMoves() {
+		boolean[][] mat = new boolean [getBoard().getRows()] [getBoard().getColumns()];
+		return mat;
 	}
 	
 	
-	
-	@Override
-	public String toString() {
-		return "R";
-}
-	
-	
-	
-	
+	//String========================
+		@Override
+		public String toString() {
+			return "R";
+	}
 	
 
 }
