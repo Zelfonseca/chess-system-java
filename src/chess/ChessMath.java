@@ -28,10 +28,15 @@ public class ChessMath {
 		return mat;
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> b7b63a63af2ef5c715ad89754be5a4d6336867ae
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
 	}
 	
+<<<<<<< HEAD
 	private void initialSetup() {
 		placeNewPiece('C', 1, new Rook(board, Color.WHITE));
         placeNewPiece('C', 2, new Rook(board, Color.WHITE));
@@ -47,6 +52,13 @@ public class ChessMath {
         placeNewPiece('E', 8, new Rook(board, Color.BLACK));
         placeNewPiece('D', 8, new King(board, Color.BLACK));
 		
+=======
+	
+	private void initialSetup() {
+		placeNewPiece('B' , 6 , new Rook(board, Color.WHITE));
+		placeNewPiece('E', 8, new King(board, Color.BLACK));
+		placeNewPiece('E', 1, new Rook(board, Color.WHITE));
+>>>>>>> b7b63a63af2ef5c715ad89754be5a4d6336867ae
 	}
 	
 	
