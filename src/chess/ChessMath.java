@@ -7,99 +7,118 @@ import chess.pieces.King;
 import chess.pieces.Rook;
 
 public class ChessMath {
-	
-	//Atributos============================
+
+	// Atributos============================================================
+	private int turn;
+	private Color currentPlayer;
 	private Board board;
-	
-	
-	//Construtores=========================
+
+	// Construtores=========================================================
 	public ChessMath() {
 		board = new Board(8, 8);
+		turn = 1;
+		currentPlayer = Color.WHITE;
 		initialSetup();
 	}
-	
-	
-	//Método===================================
+
+	// Get and Set===========================================================
+	public int getTurn() {
+		return turn;
+	}
+
+	public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+	// Foi retirado os métodos SET para evitar que esses dados sejam manipulados
+	// Get and
+	// Set========================================================================
+
+	// Método=====================================================================================================
 	public ChessPiece[][] getPieces() {
-		ChessPiece [][] mat = new ChessPiece [board.getRows()] [board.getColumns()];
-		for(int i = 0; i < board.getRows(); i++) {
-			for(int j = 0; j < board.getColumns(); j++) {
-				mat[i][j] = (ChessPiece)board.piece(i, j);
+		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
+		for (int i = 0; i < board.getRows(); i++) {
+			for (int j = 0; j < board.getColumns(); j++) {
+				mat[i][j] = (ChessPiece) board.piece(i, j);
 			}
 		}
 		return mat;
 	}
-	
-	//método 'perform chess move'
+
+	// método 'perform chess move'
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
-		return (ChessPiece)capturedPiece;
+		nextTurn();
+		return (ChessPiece) capturedPiece;
 	}
-	
-	// validação das posições possíveis a partir da posição de origem 
-	public boolean [][] possibleMoves (ChessPosition sourcePosition){
+
+	// validação das posições possíveis a partir da posição de origem
+	public boolean[][] possibleMoves(ChessPosition sourcePosition) {
 		Position position = sourcePosition.toPosition();
 		validateSourcePosition(position);
 		return board.piece(position).possibleMoves();
-		
+
 	}
-	
-	//criação da função 'makeMove'
+
+	// criação da função 'makeMove'
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
 		return capturedPiece;
 	}
-	
-	
-	//criação da função 'validateSourcePosition'
+
+	// criação da função 'validateSourcePosition'=======================================
 	private void validateSourcePosition(Position position) {
-		if(!board.thereIsAPiece(position)) {
+		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position");
 		}
-		if(!board.piece(position).isThereAnyPossibleMove()) {
+		if(currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+			throw new ChessException("The chosen piece is not yours");
+		}
+		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible for the choosen piece");
 		}
 	}
-	
-	
-	
+
+	// criação da função 'validateTargetPosition'=========================================
 	private void validateTargetPosition(Position source, Position target) {
-		if(!board.piece(source).possibleMove(target)) {
+		if (!board.piece(source).possibleMove(target)) {
 			throw new ChessException("The chosen piece can't move to target position");
 		}
 	}
-	
 
+	//Criação método 'NextTurn'==========================================================
+	private void nextTurn() {
+		turn++;
+		// se          o jogador atual for Branco    então agora será Preto caso contrário será Branco
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
+	
+	
+	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
 	}
-	
 
 	private void initialSetup() {
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
-        placeNewPiece('c', 2, new Rook(board, Color.WHITE));
-        placeNewPiece('d', 2, new Rook(board, Color.WHITE));
-        placeNewPiece('e', 2, new Rook(board, Color.WHITE));
-        placeNewPiece('e', 1, new Rook(board, Color.WHITE));
-        placeNewPiece('d', 1, new King(board, Color.WHITE));
+		placeNewPiece('c', 2, new Rook(board, Color.WHITE));
+		placeNewPiece('d', 2, new Rook(board, Color.WHITE));
+		placeNewPiece('e', 2, new Rook(board, Color.WHITE));
+		placeNewPiece('e', 1, new Rook(board, Color.WHITE));
+		placeNewPiece('d', 1, new King(board, Color.WHITE));
 
-        placeNewPiece('c', 7, new Rook(board, Color.BLACK));
-        placeNewPiece('c', 8, new Rook(board, Color.BLACK));
-        placeNewPiece('d', 7, new Rook(board, Color.BLACK));
-        placeNewPiece('e', 7, new Rook(board, Color.BLACK));
-        placeNewPiece('e', 8, new Rook(board, Color.BLACK));
-        placeNewPiece('d', 8, new King(board, Color.BLACK));
+		placeNewPiece('c', 7, new Rook(board, Color.BLACK));
+		placeNewPiece('c', 8, new Rook(board, Color.BLACK));
+		placeNewPiece('d', 7, new Rook(board, Color.BLACK));
+		placeNewPiece('e', 7, new Rook(board, Color.BLACK));
+		placeNewPiece('e', 8, new Rook(board, Color.BLACK));
+		placeNewPiece('d', 8, new King(board, Color.BLACK));
+		// Método=====================================================================================================
 	}
-	
-	
-	
-	
-	
 
 }
