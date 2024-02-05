@@ -20,7 +20,7 @@ public class Program {
 		List<ChessPiece> captured = new ArrayList<>();
 		
 
-		while (true) {
+		while (!chessMath.getCheckMate()) {
 			try {
 				UI.clearScreen();                  // chamando função para limpar tela do 'gitBash'
 				UI.printMatch(chessMath, captured);
@@ -48,6 +48,8 @@ public class Program {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			}
-		}
+		}//final do while
+		UI.clearScreen();
+		UI.printMatch(chessMath, captured);
 	}
 }
