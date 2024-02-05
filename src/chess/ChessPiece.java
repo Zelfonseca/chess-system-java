@@ -6,24 +6,28 @@ import boardgame.Board;
 
 public abstract class ChessPiece extends Piece{
 	
-	//Atributos
+	//Atributos============================================================
 	private Color color;
 
 
-	//Construtores
+	//Construtores========================================================
 	public ChessPiece(Board board, Color color) {
 		super(board);
 		this.color = color;
 	}
 
 
-	//Get and Set
+	//Get and Set===========================================================
 	public Color getColor() {
 		return color;
 	}
+	
+	//Métodos==========================================================================
+	public ChessPosition getChessPosition() {
+		 return ChessPosition.fromPosition(position);
+	}
 
 	//Retirei o SET do Color pois não quero que a cor da peça seja modificada
-	
 	
 	//Método===============================================
 	protected boolean isThereOpponentPiece(Position position) {
