@@ -40,6 +40,14 @@ public class ChessMath {
 		return (ChessPiece)capturedPiece;
 	}
 	
+	// validação das posições possíveis a partir da posição de origem 
+	public boolean [][] possibleMoves (ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+		
+	}
+	
 	//criação da função 'makeMove'
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
