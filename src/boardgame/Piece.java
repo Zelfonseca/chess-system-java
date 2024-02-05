@@ -10,7 +10,6 @@ public abstract class Piece{
 	
 	// CONSTRUTORES============================
 	public Piece(Board board) {
-		super();
 		this.board = board;
 		position = null;
 	}
@@ -45,7 +44,4 @@ public abstract class Piece{
 		}
 		return false;
 	}
-	
-	
-
 }

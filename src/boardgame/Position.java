@@ -38,6 +38,12 @@ public class Position {
 	
 	
 	// MÉTODOS
+	public void setValues(int row, int column) {
+		this.row = row;
+		this.column = column;
+	}
+	
+	
 	
 	
 	//To String 							para imprimir a posição das peças na tela

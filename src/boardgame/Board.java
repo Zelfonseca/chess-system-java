@@ -23,18 +23,15 @@ public class Board {
 		return rows;
 	}
 
-//	public void setRows(int rows) { 		Retira-se o setRows para não permitir que seja alterada a quantidade de linhas
-//		this.rows = rows;
-//	}
+		//	Retira-se o setRows para não permitir que seja alterada a quantidade de linhas
+
 
 	public int getColumns() {
 		return columns;
 	}
 
-//	public void setColumns(int columns) {		Retira-se o setColumns para não permitir que seja alterada a quantidade de colunas
-//		this.columns = columns;
-//	}
-	
+		//	Retira-se o setColumns para não permitir que seja alterada a quantidade de colunas
+
 	
 	//Métodos===============================================================================================================
 	public Piece piece(int row , int column) {

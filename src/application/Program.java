@@ -18,30 +18,24 @@ public class Program {
 
 		while (true) {
 			try {
-				UI.clearScreen(); 					// chamando função para limpar tela do 'gitBash'
+				UI.clearScreen(); // chamando função para limpar tela do 'gitBash'
 				UI.printBoard(chessMath.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UI.readChessPosition(sc);
-	
+
 				System.out.println();
 				System.out.print("Target: ");
 				ChessPosition target = UI.readChessPosition(sc);
-	
+
 				ChessPiece capturedPiece = chessMath.performChessMove(source, target);
-			}
-				catch(ChessException e) {
-					System.out.println(e.getMessage());
-					sc.nextLine();
-				}
-				catch(InputMismatchException e) {
-					System.out.println(e.getMessage());
-					sc.nextLine();
+			} catch (ChessException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (InputMismatchException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
 			}
 		}
-		
-		
-		
-		
 	}
 }
