@@ -96,7 +96,8 @@ public class ChessMath {
 
 	// criação da função 'makeMove'
 	private Piece makeMove(Position source, Position target) {
-		Piece p = board.removePiece(source);
+		ChessPiece p = (ChessPiece)board.removePiece(source);
+		p.increaseMoveCount();
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
 		if (capturedPiece != null) {
@@ -109,7 +110,8 @@ public class ChessMath {
 
 	// criação da função 'Desfazer o movimento'
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
-		Piece p = board.removePiece(target);
+		ChessPiece p = (ChessPiece)board.removePiece(target);
+		p.decreaseMoveCount();
 		board.placePiece(p, source);
 		if (capturedPiece != null) {
 			board.placePiece(capturedPiece, target);
