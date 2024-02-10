@@ -31,7 +31,7 @@ public class Pawn extends ChessPiece {
 			//Regra para movimentação de duas casas pela primeira jogada com a peça, estando ela na posição inicial
 			p.setValues(position.getRow() - 2, position.getColumn());
 			Position p2 = new Position(position.getRow() - 1, position.getColumn());
-			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2) && !getBoard().thereIsAPiece(p2) && getMoveCount() == 0); {
+			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2) && !getBoard().thereIsAPiece(p2) && getMoveCount() == 0) {
 				mat[p.getRow()][p.getColumn()] = true;
 			}
 			
@@ -56,7 +56,7 @@ public class Pawn extends ChessPiece {
 				// movimentando para baixo duas casas pela primeira jogada com a peça, estando ela na posição inicial
 				p.setValues(position.getRow() + 2, position.getColumn());
 				Position p2 = new Position(position.getRow() + 1, position.getColumn());
-				if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2) && !getBoard().thereIsAPiece(p2) && getMoveCount() == 0); {
+				if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2) && !getBoard().thereIsAPiece(p2) && getMoveCount() == 0) {
 					mat[p.getRow()][p.getColumn()] = true;
 				}
 				
